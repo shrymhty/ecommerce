@@ -27,6 +27,14 @@ const StoreContextProvider = (props) => {
         }));
     }
 
+    const deleteFromCart = (itemId) => {
+        setCartItems(prev => {
+            const updatedCart = { ...prev };
+            delete updatedCart[itemId];
+            return updatedCart;
+        });
+    };
+
     useEffect (() => {
         console.log(cartItems);
     }, [cartItems])
@@ -36,7 +44,8 @@ const StoreContextProvider = (props) => {
         cartItems,
         setCartItems,
         addToCart,
-        removeFromCart
+        removeFromCart,
+        deleteFromCart
     }
     return (
         <StoreContext.Provider value={contextValue}>
